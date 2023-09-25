@@ -20,6 +20,8 @@ namespace RestStopCode
         private string? LastEventId;
         public static int VikaBug1Counter = 0;
 
+        public bool AllaMail8Heart = false;
+
         private Patcher Patcher;
 
         public override void Entry(IModHelper helper)
@@ -95,6 +97,9 @@ namespace RestStopCode
 
         private void OnDayEnding(object sender, DayEndingEventArgs e)
         {
+            if (Game1.player.friendshipData["Alla"].Points > 1999 && AllaMail8Heart == false)
+                Game1.player.mailForTomorrow.Add("MermaidRise.Alla8HeartInvite");
+
      
             if (Game1.player.mailReceived.Contains("VikaBug1Mail"))
             {

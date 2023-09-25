@@ -82,6 +82,7 @@ namespace RestStopLocations.Quests
 			Helper.Events.GameLoop.DayEnding += OnDayEnding;
 			SpaceEvents.OnEventFinished += OnEventFinished;
 
+
 			OrdersGenerated.Value = false;
 		}
 
@@ -301,7 +302,8 @@ namespace RestStopLocations.Quests
 			}
 		}
 
-		[Obsolete]
+
+
 		static void OnEventFinished(object sender, EventArgs e)
 		{
 			if (!Game1.player.IsMainPlayer)
@@ -343,13 +345,20 @@ namespace RestStopLocations.Quests
 
                     break;
 
+				case "Mermaid.Alla8HeartEvent":
+
+					if (Game1.player.mailReceived.Contains("MermaidAllaDatingYes"))
+						{
+						Friendship friendship = Game1.player.friendshipData["Alla"];
+						friendship.Status = FriendshipStatus.Dating;
+					}
+                    break;
 
 
 
 
 
-               
-					/*
+                    /*
 				case MermaidConstants.E_OPENPORTAL:
 					UtilFunctions.TryCompleteQuest(MermaidConstants.Q_OPENPORTAL);
 					if (Game1.player.IsMainPlayer)
@@ -358,8 +367,8 @@ namespace RestStopLocations.Quests
 					}
 					break;  */
 
-				
-			}
+
+            }
 		}
 	}
 

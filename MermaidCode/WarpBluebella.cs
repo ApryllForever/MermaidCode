@@ -39,6 +39,32 @@ namespace RestStopCode
             {
                 return;
             }
+
+
+            if (e.Button.IsActionButton())
+            {
+                try
+                {
+                    if (Game1.player.CurrentItem?.Name != null)
+                    {
+
+                        if ((bool)(Game1.player.CurrentItem?.Name.Contains("Bluebella")))
+                        {
+                            Monitor.Log($"RestStop: Using Warp Totem: Bluebella");
+                            Game1.player.reduceActiveItemByOne();
+                            DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Monitor.Log($"Could not find Hell Dungeon warp totem ID. Error: {ex}");
+                }
+            }
+
+
+
+            /*
             if (e.Button.IsActionButton())
             {
                 try
@@ -54,7 +80,7 @@ namespace RestStopCode
                 {
                     Monitor.Log($"Could not find Bluebella Dungeon warp totem ID. Error: {ex}");
                 }
-            }
+            } */
         }
 
         public static bool DirectWarp()

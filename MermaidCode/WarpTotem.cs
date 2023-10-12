@@ -43,24 +43,53 @@ namespace RestStopCode
             {
                 return;
             }
+
             if (e.Button.IsActionButton())
             {
                 try
                 {
-
-
-                    if (Game1.player.CurrentItem.QualifiedItemId == Totem)
+                    if (Game1.player.CurrentItem?.Name != null)
                     {
-                        Monitor.Log($"RestStop: Using Warp Totem: Morana");
-                        Game1.player.reduceActiveItemByOne();
-                        DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        if ((bool)(Game1.player.CurrentItem?.Name.Contains("Spirit Realm")))
+                        {
+                            Monitor.Log($"RestStop: Using Warp Totem: Spirit Realm");
+                            Game1.player.reduceActiveItemByOne();
+                            DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Monitor.Log($"Could not find warp totem ID. Error: {ex}");
+                    Monitor.Log($"Could not find Hell Dungeon warp totem ID. Error: {ex}");
                 }
             }
+
+
+
+            /*
+            if (Game1.player.CurrentItem.QualifiedItemId != Totem)
+                return;
+            {
+
+                if (e.Button.IsActionButton())
+                {
+                    try
+                    {
+
+
+                        if (Game1.player.CurrentItem.QualifiedItemId == Totem)
+                        {
+                            Monitor.Log($"RestStop: Using Warp Totem: Morana");
+                            Game1.player.reduceActiveItemByOne();
+                            DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Monitor.Log($"Could not find warp totem ID. Error: {ex}");
+                    }
+                }
+            } */
         }
 
         public static bool DirectWarp()

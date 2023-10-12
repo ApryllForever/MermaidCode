@@ -15,7 +15,7 @@ namespace RestStopCode
         static readonly int Dest_X = 9;
         static readonly int Dest_Y = 27;
 
-        public static string Totem = null;
+        public static string Totem1 = null;
         static Color color = Color.Indigo;
 
         static IModHelper Helper;
@@ -32,7 +32,7 @@ namespace RestStopCode
 
         private static void OnSaveLoaded(object sender, SaveLoadedEventArgs e)
         {
-            Totem = "(O)ApryllForever.RiseMermaids_SapphireWarpTotem";
+            Totem1 = "(O)ApryllForever.RiseMermaids_SapphireWarpTotem";
         }
 
         private static void OnButtonPressed(object sender, ButtonPressedEventArgs e)
@@ -41,15 +41,20 @@ namespace RestStopCode
             {
                 return;
             }
+
             if (e.Button.IsActionButton())
             {
                 try
                 {
-                    if (Game1.player.CurrentItem.QualifiedItemId == Totem)
+                    if (Game1.player.CurrentItem?.Name != null)
                     {
-                        Monitor.Log($"RestStop: Using Warp Totem: Sapphire");
-                        Game1.player.reduceActiveItemByOne();
-                        DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+
+                        if ((bool)(Game1.player.CurrentItem?.Name.Contains("Sapphire Warp")))
+                        {
+                            Monitor.Log($"RestStop: Using Warp Totem: Sapphire");
+                            Game1.player.reduceActiveItemByOne();
+                            DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -57,6 +62,29 @@ namespace RestStopCode
                     Monitor.Log($"Could not find Hell Dungeon warp totem ID. Error: {ex}");
                 }
             }
+
+
+            /*
+            if (Game1.player.CurrentItem.QualifiedItemId != Totem)
+                return;
+            {
+                if (e.Button.IsActionButton())
+                {
+                    try
+                    {
+                        if (Game1.player.CurrentItem.QualifiedItemId == Totem)
+                        {
+                            Monitor.Log($"RestStop: Using Warp Totem: Sapphire");
+                            Game1.player.reduceActiveItemByOne();
+                            DoTotemWarpEffects(Game1.player, (f) => DirectWarp());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Monitor.Log($"Could not find Hell Dungeon warp totem ID. Error: {ex}");
+                    }
+                }
+            } */
         }
 
         public static bool DirectWarp()

@@ -162,7 +162,7 @@ namespace RestStopCode
                     }
                 }
 
-                if (allConditionsMet && Game1.player.team.completedSpecialOrders.ContainsKey(entry.OrderKey) == false) //if conditions are met AND the players have NOT completed this order
+                if (allConditionsMet && Game1.player.team.completedSpecialOrders.Contains(entry.OrderKey) == false) //if conditions are met AND the players have NOT completed this order
                 {
                     if (Game1.player.team.SpecialOrderActive(entry.OrderKey) == false) //if the players do not already have this order
                     {

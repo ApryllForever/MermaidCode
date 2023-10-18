@@ -201,7 +201,7 @@ namespace RestStopLocations.Quests
 
 				for (int j = 0; j < typed_keys.Count; j++)
 				{
-					if (Game1.player.team.completedSpecialOrders.ContainsKey(typed_keys[j]))
+					if (Game1.player.team.completedSpecialOrders.Contains(typed_keys[j]))
 					{
 						typed_keys.RemoveAt(j);
 						j--;

@@ -90,7 +90,7 @@ namespace RestStopCode
             }
             SpiritAltarTriggeredToday.Add(position);
             GameLocation location = Game1.currentLocation;
-            Game1.stats.incrementStat("SpiritAltarChecked", 1);
+            Game1.stats.Increment("SpiritAltarChecked", 1);
 
               if (Game1.player.ActiveObject != null && Game1.player.team.sharedDailyLuck.Value != -0.12 && Game1.player.team.sharedDailyLuck.Value != 0.12)
                             {

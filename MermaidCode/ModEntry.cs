@@ -6,6 +6,9 @@ using xTile;
 using RestStopLocations.Quests;
 using HarmonyLib;
 using SpaceShared.APIs;
+using StardewValley.Characters;
+using StardewValley.GameData;
+
 
 
 
@@ -97,7 +100,13 @@ namespace RestStopCode
 
         private void OnDayEnding(object sender, DayEndingEventArgs e)
         {
-            if (Game1.player.friendshipData["Alla"].Points > 1999 && AllaMail8Heart == false)
+            int hearts;
+            hearts = Game1.player.getFriendshipHeartLevelForNPC("Alla");
+
+
+
+            //string alla = Game1.currentLocation.getCharacterFromName("Alla");
+            if (hearts > 7 && AllaMail8Heart == false && !Game1.player.eventsSeen.Contains("Mermaid.Alla8HeartEvent"))
                 Game1.player.mailForTomorrow.Add("MermaidRise.Alla8HeartInvite");
 
      
